@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../model/user");
+const auth = require("../middleware/auth");
 const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
@@ -24,6 +25,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/logout", async (req, res) => {});
+router.post("/logout", auth, async (req, res) => {
+  try {
+    const { user } = req;
+    user.tokens = user.tokens.filter((token) => token.token !== req.token);
+    await user.save();
+    res.status(200).send({ data: "Logout success" });
+  } catch ({ message }) {
+    res.status(500).send({ error: message });
+  }
+});
 
 module.exports = router;
