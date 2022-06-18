@@ -3,7 +3,13 @@ const router = require("express").Router();
 const bodyParser = require("body-parser");
 const User = require("../model/user");
 router.use(bodyParser.json());
+////////////////////////////////////////
 
+/**
+ * @route POST api/user
+ * @desc returns all the user
+ * @access Private
+ */
 router.get("/user", auth, async (req, res) => {
   try {
     const user = await User.find();
@@ -13,7 +19,12 @@ router.get("/user", auth, async (req, res) => {
   }
 });
 
-router.put("/user/:id", async (req, res) => {
+/**
+ * @route POST api/user
+ * @desc Updates specific user data from the id provided in the parameter
+ * @access Private
+ */
+router.put("/user/:id", auth, async (req, res) => {
   try {
     const { id: _id } = req.params;
     const updates = Object.keys(req.body);
@@ -33,6 +44,11 @@ router.put("/user/:id", async (req, res) => {
   }
 });
 
+/**
+ * @route POST api/user
+ * @desc Deletes user from the id provided in the parameter
+ * @access Private
+ */
 router.delete("/user", auth, async (req, res) => {
   try {
     const { _id } = req.body;

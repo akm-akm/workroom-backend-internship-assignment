@@ -3,7 +3,6 @@ const express = require("express");
 const app = new express();
 const cors = require("cors");
 const prefix = "/api";
-const PORT = process.env.PORT || 5000;
 require("./model/mongoose");
 const register_router = require("./routes/register");
 const login_router = require("./routes/login");

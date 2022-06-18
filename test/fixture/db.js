@@ -7,7 +7,7 @@ const userOne = {
   _id: userOneId,
   name: "Aditya Kumar Mandal",
   email: "adityakumarmandal@gmail.com",
-  password: "3.14159265",
+  password: "Three.1415",
   dob: "2000/01/08", //yyyy-mm-dd
   tokens: [
     {

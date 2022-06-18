@@ -14,10 +14,24 @@ test("Login", async () => {
       password: userOne.password,
     })
     .expect(201);
-  const user = await User.findOne({ email: userOne.email });
   // expect(response.body.data.token).toBe(user.tokens[1].token);
   // expect(response.body.data.token).not.toBe(user.tokens[0].token);
-  expect(user).not.toBeNull();
+  expect(response).not.toBeNull();
+});
+
+test("Wrong Login", async () => {
+  const response = await request(app)
+    .post("/api/login")
+    .send({
+      email: userOne.email,
+      password: "wrongpassword",
+    })
+    .expect(400);
+});
+
+test("Wrong logout", async () => {
+  await request(app).post(`/api/logout`).send().expect(401);
+  const user = await User.findById({ _id: userOneId });
 });
 
 test("logout", async () => {
