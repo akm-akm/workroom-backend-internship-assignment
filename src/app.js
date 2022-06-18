@@ -16,7 +16,5 @@ app
   .use(prefix, user_route)
   .get("*", (_, res) =>
     res.status(200).json({ message: "Workroom backend internship assignment" })
-  )
-  .listen(PORT, () =>
-    console.log(`🚀 Server ready at http://localhost:${PORT}`)
   );
+module.exports = { app };
