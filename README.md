@@ -303,7 +303,7 @@ To run tests, run the following command
 ### 💡 Update a user data
 
 ```http
-  POST /api/user/:id
+  PUT /api/user/:id
 ```
 
 #### Description

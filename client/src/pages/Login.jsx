@@ -31,7 +31,6 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    console.log(value);
     addUser();
   };
   const history = useHistory();
@@ -42,13 +41,13 @@ function Login() {
         headers: { "Content-Type": "application/json" },
         withCredentials: false,
       });
-      console.log(JSON.stringify(response?.data));
       context.login(response.data.data);
       history.push("/");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
+        window.alert(err.response.data.error)
         setErrMsg("Missing Username or Password");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
@@ -70,7 +69,7 @@ function Login() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign in
           </Typography>
           <Box
             component="form"

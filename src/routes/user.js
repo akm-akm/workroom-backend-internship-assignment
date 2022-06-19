@@ -20,7 +20,7 @@ router.get("/user", auth, async (req, res) => {
 });
 
 /**
- * @route POST api/user/:id
+ * @route PUT api/user/:id
  * @desc Updates specific user data from the id provided in the parameter
  * @access Private
  */

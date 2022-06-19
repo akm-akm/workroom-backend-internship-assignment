@@ -11,8 +11,9 @@ import Container from "@mui/material/Container";
 import { useHistory } from "react-router-dom";
 import axios from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
+import Modal from "@mui/material/Modal";
 
-function Register() {
+function Update({ user }) {
   const history = useHistory();
   const context = React.useContext(AuthContext);
 
@@ -20,7 +21,6 @@ function Register() {
     name: "",
     email: "",
     password: "",
-    cnfPassword: "",
     dob: "",
     gender: "",
     game: "",
@@ -39,39 +39,53 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (value.password !== value.cnfPassword) {
-      window.alert("Password do not match!");
-      return;
-    }
+
     console.log(value);
-    addUser();
+    const key = Object.keys(value);
+    key.forEach((k) => {
+      if (value[k] === "") {
+        delete value[k];
+      }
+    });
+    updateUser();
   };
-  const addUser = async () => {
+  const updateUser = async () => {
     try {
-      const response = await axios.post("/register", JSON.stringify(value), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: false,
-      });
+      const response = await axios.post(
+        `/user/${user._id}`,
+        JSON.stringify(value),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: false,
+        }
+      );
       console.log(JSON.stringify(response?.data));
-      context.login(response.data.data);
+
       history.push("/");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
         window.alert(err.response.data.error);
 
-        setErrMsg("Missing Username or Password");
-      
+        setErrMsg("Bad request");
       } else {
-        setErrMsg("Login Failed");
+        setErrMsg("error");
       }
     }
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -184,18 +198,6 @@ function Register() {
                   id="password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  value={value.cnfPassword}
-                  onChange={handleChange}
-                  fullWidth
-                  name="cnfPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="cnfPassword"
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -205,21 +207,13 @@ function Register() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Submit
             </Button>
-
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/login" variant="body2">
-                  Already have an account? Log in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
-    </>
+    </Modal>
   );
 }
 
-export default Register;
+export default Update;
