@@ -4,9 +4,19 @@
 ### Assignment Description
 
 - One should be able to register themselve
-- One should be able to fetch all users informatio
-- One should be able to delete any user informatio
+- One should be able to fetch all users information
+- One should be able to delete any user information
 - One should be able to update any user information
+
+## Assumptions
+
+"One should be able to delete any user information."
+
+As the the question demands, user should be able to delete any user information, we will assume that the user can't delete essential information which are `email`, `name`, `dob` and `password`. Other information like `about`, `game`, `country` and `language` can be deleted successfully.
+
+## Postman Testing
+
+<vid  src="assets/postman.testing.webm" width=300>
 
 ## Run Locally
 
@@ -41,11 +51,13 @@ Testing
 ```bash
   npm test
 ```
+
 Start the server
 
 ```bash
   npm run start
 ```
+
 On successfull setup-
 
 `🚀 Server ready at http://localhost:{PORT}`
@@ -68,7 +80,6 @@ To run tests, run the following command
   npm run test
 ```
 
-
 # API Reference
 
 ### 💡 Register a user
@@ -77,11 +88,16 @@ To run tests, run the following command
   POST /api/register
 ```
 
+#### Description
+
+`This endpoint is used to register a user.`
+
 |    Body   | Type     | Required Keys                |
 | :-------- | :------- | :------------------------- |
 | `data` | `string` |  `name`,`email`,`password`,`dob` |
 
 ##### Request Body
+
 ```JSON
 {
     "name":     "Aditya Kumar Mandal",
@@ -97,6 +113,7 @@ To run tests, run the following command
 ```
 
 ##### Response Body
+
 ```JSON
 {
     "data": {
@@ -130,19 +147,26 @@ To run tests, run the following command
   POST /api/login
 ```
 
+#### Description
+
+`This endpoint is used to login.`
+
+
 |    Body   | Type     | Required Keys                |
 | :-------- | :------- | :------------------------- |
 | `data` | `string` |  `email`,`password` |
 
 ##### Request Body
+
 ```JSON
 {
-    "email": "akm123@gmail.com",
+    "email":    "akm123@gmail.com",
     "password": "Three.1415"
 }
 ```
 
 ##### Response Body
+
 ```JSON
 {
     "data": {
@@ -177,12 +201,18 @@ To run tests, run the following command
   GET /api/logout
 ```
 
+#### Description
+
+`This endpoint is used to logout.`
+
+
 |    Header   | Type     | Required                |
 | :-------- | :------- | :------------------------- |
 | `Authorization` | `Bearer` |      `true`           |
 
 
 ##### Response Body
+
 ```JSON
 {
     "data": "Logout success"
@@ -205,12 +235,17 @@ To run tests, run the following command
   GET /api/user
 ```
 
+#### Description
+
+`This endpoint is used to get all the registered users.`
+
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
 
 
 ##### Response Body
+
 ```JSON
 {
     "data": [
@@ -270,6 +305,10 @@ To run tests, run the following command
   POST /api/user/:id
 ```
 
+#### Description
+
+`This endpoint is used to update any user's data.`
+
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
@@ -284,19 +323,21 @@ To run tests, run the following command
 | `data` | `string` |  `name`,`email`,`password`,`dob`,`gender`,`about`,`country`,`language`,`game` |
 
 ##### Request Body
+
 ```JSON
 {
-    "gender": "M",
-    "game": "cricket",
-    "about": "coder",
+    "gender":   "M",
+    "game":     "cricket",
+    "about":    "coder",
     "language": "Hindi",
-    "email":"rohi@gmail.com",
-    "name": "Rohit",
-    "dob": "2002/12/08"
+    "email":    "rohi@gmail.com",
+    "name":     "Rohit",
+    "dob":      "2002/12/08"
 }
 ```
 
 ##### Response Body
+
 ```JSON
 {
     "data": {
@@ -328,6 +369,10 @@ To run tests, run the following command
   PATCH /api/user/:id
 ```
 
+#### Description
+
+`This endpoint is used to delete a user's data.`
+
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
@@ -342,6 +387,7 @@ To run tests, run the following command
 | `data` | `string` | `gender`,`about`,`country`,`language`,`game` |
 
 ##### Request Body
+
 ```JSON
 {
   "gender":   "",
@@ -352,6 +398,7 @@ To run tests, run the following command
 ```
 
 ##### Response Body
+
 ```JSON
 {
     "data": {
@@ -376,8 +423,13 @@ To run tests, run the following command
 ### 💡 Delete a user profile
 
 ```http
-  DELETE /api/user/
+  DELETE /api/user
 ```
+
+#### Description
+
+`This endpoint is used to delete a user profile.`
+
 
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
@@ -392,11 +444,12 @@ To run tests, run the following command
 ##### Request Body
 ```JSON
 {
-    "_id":"62aec4b4487d50816fadd1d5"
+  "_id": "62aec4b4487d50816fadd1d5"
 }
 ```
 
 ##### Response Body
+
 ```JSON
 {
     "data": {
@@ -421,7 +474,7 @@ To run tests, run the following command
 400 - Bad Request
 401 - Unautharized
 ```
-## Authors
+
+## Author
 
 - [@Aditya Kumar Mandal](https://www.github.com/akm-akm)
-

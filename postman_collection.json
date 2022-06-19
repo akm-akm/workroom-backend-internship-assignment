@@ -26,7 +26,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Aditya Kumar Mandal\",\n    \"email\": \"ak@gmail.com\",\n    \"dob\": \"2001/01/01\",\n    \"password\":\"Three.1415\"\n}",
+					"raw": "{\n    \"name\":     \"Aditya Kumar Mandal\",\n    \"email\":    \"akm123@gmail.com\",\n    \"country\":  \"India\",\n    \"gender\":   \"M\",\n    \"dob\":      \"2001/01/01\",\n    \"game\":     \"cricket\",\n    \"about\":    \"Just another coder\",\n    \"password\": \"Three.1415\",\n    \"language\": \"Hindi\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"a@gmail.com\",\n    \"password\":\"12345678\"\n\n}",
+					"raw": "{\n    \"email\": \"akm123@gmail.com\",\n    \"password\": \"Three.1415\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,7 +90,7 @@
 		{
 			"name": "Log out",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"url": {
 					"raw": "{{url}}/logout",
@@ -128,7 +128,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Mr Aditya Kumar Mandal\",\n  \"email\": \"ad@gmail.com\",\n  \"dob\": \"2001/01/01\"\n}",
+					"raw": "{\n    \"gender\": \"M\",\n    \"game\": \"cricker\",\n    \"about\": \"coder\",\n    \"language\": \"Hindi\",\n    \"email\":\"rohi@gmail.com\",\n    \"name\": \"Rohit\",\n    \"dob\": \"2002/12/08\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,13 +136,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/user/62ada0ed15251f5613a354d8",
+					"raw": "{{url}}/user/62aeb1d30360217f00e72ef3",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"user",
-						"62ada0ed15251f5613a354d8"
+						"62aeb1d30360217f00e72ef3"
 					]
 				}
 			},
@@ -169,6 +169,33 @@
 					],
 					"path": [
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a user data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"gender\": \"M\",\n    \"game\": \"cricket\",\n    \"about\": \"coder\",\n    \"language\": \"Hindi\"\n  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/62aeb1d30360217f00e72ef3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"62aeb1d30360217f00e72ef3"
 					]
 				}
 			},
