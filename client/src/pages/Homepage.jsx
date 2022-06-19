@@ -22,7 +22,6 @@ export default function DataTable() {
           withCredentials: false,
         });
         isMounted && setData(response.data.data);
-        //console.log(response.data.data);
 
         console.log(data);
       } catch (error) {
@@ -32,7 +31,7 @@ export default function DataTable() {
     getUsers();
     return () => {
       isMounted = false;
-      // controller.abort();
+       controller.abort();
     };
   }, []);
 
@@ -47,7 +46,6 @@ export default function DataTable() {
           alignItems: "center",
         }}
       >
-        {" "}
         <Typography component="h1" variant="h5">
           All Users
         </Typography>

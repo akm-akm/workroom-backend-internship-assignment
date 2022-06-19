@@ -20,7 +20,7 @@ export default function FloatingActionButtons() {
         margin: "35px",
       }}
     >
-      {user.name} Log out
+      Log out
     </Fab>
   ) : null;
 }

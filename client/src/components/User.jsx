@@ -261,6 +261,7 @@ export default function BasicCard({ user }) {
             <Button
               onClick={handleDelete}
               fullWidth
+              color="error"
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -407,6 +408,7 @@ export default function BasicCard({ user }) {
               </Button>
               <Button
                 type="submit"
+                color="error"
                 fullWidth
                 onClick={handleCloseu}
                 variant="contained"
