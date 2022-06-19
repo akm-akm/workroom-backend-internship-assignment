@@ -30,13 +30,13 @@ test("Wrong Login", async () => {
 });
 
 test("Wrong logout", async () => {
-  await request(app).post(`/api/logout`).send().expect(401);
+  await request(app).get(`/api/logout`).send().expect(401);
   const user = await User.findById({ _id: userOneId });
 });
 
 test("logout", async () => {
   await request(app)
-    .post(`/api/logout`)
+    .get(`/api/logout`)
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
     .send()
     .expect(200);

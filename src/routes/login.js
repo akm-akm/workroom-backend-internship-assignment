@@ -22,11 +22,11 @@ router.post("/login", async (req, res) => {
 });
 
 /**
- * @route POST api/logout
+ * @route GET api/logout
  * @desc Logs out user and deletes token from db
  * @access Private
  */
-router.post("/logout", auth, async (req, res) => {
+router.get("/logout", auth, async (req, res) => {
   try {
     const { user } = req;
     user.tokens = user.tokens.filter((token) => token.token !== req.token);

@@ -12,10 +12,10 @@ router.use(bodyParser.json());
  */
 router.get("/user", auth, async (req, res) => {
   try {
-    const user = await (await User.find()).reverse();
+    const user = (await User.find()).reverse();
     res.status(200).json({ data: user });
   } catch ({ message }) {
-    res.status(400).json({ error: message });
+    res.status(500).json({ error: message });
   }
 });
 
@@ -62,6 +62,7 @@ router.put("/user/:id", auth, async (req, res) => {
 router.patch("/user/:id", auth, async (req, res) => {
   try {
     const deletes = Object.keys(req.body);
+    const user = await User.findById({ _id: req.params.id });
     const allowedDeletes = ["gender", "about", "country", "language", "game"];
     const isValidOperation = deletes.every((update) =>
       allowedDeletes.includes(update)
@@ -69,12 +70,8 @@ router.patch("/user/:id", auth, async (req, res) => {
     if (!isValidOperation || deletes.length === 0) {
       return res.status(400).json({ error: "Invalid deletes!" });
     }
-    const user = await User.updateOne(
-      { _id: req.params.id },
-      { $unset: req.body }
-    );
-    //  console.log(user);
-    //await user.save();
+    await user.updateOne({ $unset: req.body });
+    await user.save();
     res.status(201).json({ data: user });
   } catch ({ message }) {
     res.status(400).json({ error: message });
@@ -90,6 +87,9 @@ router.delete("/user", auth, async (req, res) => {
   try {
     const { _id } = req.body;
     const user = await User.findByIdAndDelete({ _id });
+    if (!user) {
+      return res.status(400).json({ error: "User not found!" });
+    }
     res.status(200).json({ data: user });
   } catch ({ message }) {
     res.status(400).json({ error: message });

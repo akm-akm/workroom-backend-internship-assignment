@@ -82,12 +82,3 @@ test("Delete a user", async () => {
   const user = await User.findById({ _id: userOneId });
   expect(user).toBeNull();
 });
-
-test("logout", async () => {
-  await request(app)
-    .post(`/api/logout`)
-    .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
-    .send()
-    .expect(200);
-  const user = await User.findById({ _id: userOneId });
-});

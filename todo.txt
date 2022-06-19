@@ -1,3 +1,1 @@
-demo video
-readme
-comments
+`name`,`email`,`password`,`dob`,`gender`,`about`,`country`,`language`,`game`
