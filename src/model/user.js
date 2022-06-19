@@ -52,7 +52,31 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
-
+    gender: {
+      type: String,
+     // enum: ["M", "F", "O"],
+      default: null,
+    },
+    about: {
+      type: String,
+      maxlength: 300,
+    //  default: null,
+    },
+    game: {
+      type: String,
+      maxlength: 20,
+  //    default: null,
+    },
+    country: {
+      type: String,
+      maxlength: 20,
+    //  default: null,
+    },
+    language: {
+      type: String,
+      maxlength: 20,
+     // default: null,
+    },
     tokens: [
       {
         token: {

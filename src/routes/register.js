@@ -11,8 +11,28 @@ router.use(bodyParser.json());
  */
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, password, dob } = req.body;
-    const user = new User({ name, email, password, dob });
+    const {
+      name,
+      email,
+      password,
+      dob,
+      gender,
+      about,
+      country,
+      language,
+      game,
+    } = req.body;
+    const user = new User({
+      name,
+      email,
+      password,
+      dob,
+      gender,
+      about,
+      country,
+      language,
+      game,
+    });
     const token = await user.generateAuthToken();
     await user.save();
     res.status(201).json({ data: { user, token } });

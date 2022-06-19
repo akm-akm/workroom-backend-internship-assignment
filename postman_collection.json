@@ -8,12 +8,25 @@
 	"item": [
 		{
 			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code===201){",
+							"    pm.environment.set('authToken',pm.response.json().data.token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Aditya Kumar Mandal\",\n    \"email\": \"aslsd@gmail.com\",\n    \"dob\": \"2001/01/01\",\n    \"password\":\"12345678\"\n}",
+					"raw": "{\n    \"name\": \"Aditya Kumar Mandal\",\n    \"email\": \"ak@gmail.com\",\n    \"dob\": \"2001/01/01\",\n    \"password\":\"Three.1415\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
