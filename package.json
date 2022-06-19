@@ -1,7 +1,7 @@
 {
   "name": "workroom-backend-internship-assignment",
   "version": "1.0.0",
-  "description": "based basic User Management application.",
+  "description": "User Management application.",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

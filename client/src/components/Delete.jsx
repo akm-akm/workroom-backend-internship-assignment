@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "../api/axios";
+import { IconButton } from "@mui/material";
 function Delete({ _id }) {
   const [errMsg, setErrMsg] = useState("");
-    const values = {
-      _id: "62aedc3094d559357a061df4",
-    };
- // value._id = _id;
+   
   const handleDelete = () => {
     deleteUser();
   };
   const deleteUser = async () => {
     try {
-      console.log(_id,values);
-      const response = await axios.delete(`/user`, JSON.stringify(values), {
+      
+      const response = await axios.delete(`/user/${_id}`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: false,
       });
@@ -30,7 +28,11 @@ function Delete({ _id }) {
       }
     }
   };
-  return <DeleteIcon onClick={handleDelete} style={{ color: "red" }} />;
+  return (
+    <IconButton>
+      <DeleteIcon onClick={handleDelete} style={{ color: "red" }} />
+    </IconButton>
+  );
 }
 
 export default Delete;

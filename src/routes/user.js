@@ -55,7 +55,7 @@ router.put("/user/:id", auth, async (req, res) => {
 });
 
 /**
- * @route Patch api/user/:id
+ * @route PATCH api/user/:id
  * @desc Delete specific user data from the id provided in the parameter
  * @access Private
  */
@@ -79,13 +79,13 @@ router.patch("/user/:id", auth, async (req, res) => {
 });
 
 /**
- * @route POST api/user
+ * @route DELETE api/user
  * @desc Deletes user from the id provided in the parameter
  * @access Private
  */
-router.delete("/user", auth, async (req, res) => {
+router.delete("/user/:id", auth, async (req, res) => {
   try {
-    const { _id } = req.body;
+    const { id:_id } = req.params;
     const user = await User.findByIdAndDelete({ _id });
     if (!user) {
       return res.status(400).json({ error: "User not found!" });

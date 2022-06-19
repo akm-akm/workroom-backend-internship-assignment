@@ -8,9 +8,9 @@ export default function FloatingActionButtons() {
   const exit = () => {
     logout();
   };
-  return (
+  return user ? (
     <Fab
-       onClick={exit}
+      onClick={exit}
       variant="extended"
       style={{
         position: "fixed",
@@ -20,7 +20,7 @@ export default function FloatingActionButtons() {
         margin: "35px",
       }}
     >
-      Log out
+      {user.name} Log out
     </Fab>
-  );
+  ) : null;
 }

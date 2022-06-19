@@ -437,18 +437,9 @@ To run tests, run the following command
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
 
-
-
-|    Body   | Type     | Valid Keys                |
-| :-------- | :------- | :------------------------- |
-| `data` | `string` | `_id` |
-
-##### Request Body
-```JSON
-{
-  "_id": "62aec4b4487d50816fadd1d5"
-}
-```
+|    Parameter   | Type     | Required                |
+| :-------- | :------- | :-------------------------|
+| `Object Id` | `String` |      `true`         |
 
 ##### Response Body
 

@@ -38,14 +38,9 @@ export default function BasicCard({ user }) {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1000,
+    width: "100%",
     height: "100%",
-    bgcolor: "white",
-    border: "2px solid #000",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+    bgcolor: "#ffffff",
   };
 
   const [open, setOpen] = React.useState(false);
@@ -183,16 +178,26 @@ export default function BasicCard({ user }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button onClick={handleOpenu} size="small">
+          <Button variant="contained" onClick={handleOpenu} size="small">
             Update data
           </Button>
-          <Button onClick={handleOpend} size="small">
+          <Button
+            color="error"
+            variant="contained"
+            onClick={handleOpend}
+            size="small"
+          >
             Delete data
           </Button>
-          
+          <Delete key={user._id} _id={user._id} />
         </CardActions>
       </Card>
-      <Modal open={opend} onClose={handleClosed} aria-labelledby="modal-delete">
+      <Modal
+        sx={style}
+        open={opend}
+        onClose={handleClosed}
+        aria-labelledby="modal-delete"
+      >
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Typography component="h1" variant="h5">
