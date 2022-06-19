@@ -2,7 +2,6 @@ const request = require("supertest");
 const { app } = require("../src/app");
 const User = require("../src/model/user");
 const { userOneId, userOne, dbSetup } = require("./fixture/db");
-
 beforeEach(dbSetup);
 
 test("register", async () => {
@@ -44,20 +43,23 @@ test("register with missing details", async () => {
     })
     .expect(400);
   const user = await User.findOne({ email: "akm@akm.com" });
-    expect(user).toBeNull();
-    
+  expect(user).toBeNull();
 });
 
 test("register with small pass", async () => {
   const response = await request(app)
     .post("/api/register")
     .send({
-      name: "Aman",
-      email: "aman@akm.com",
-      password: "Adi123",
-      dob: "2000/09/08", //yyyy-mm-dd
+      name: "Leontine Light",
+      email: "llight0@moonfruit.com",
+      gender: "M",
+      dob: "2017/05/05",
+      country: "China",
+      language: "Polish",
+      password: "ATHREE.1257#$^sdc6",
     })
-    .expect(400);
+    .expect(201);
   const user = await User.findOne({ email: "akm@akm.com" });
   expect(user).toBeNull();
 });
+  

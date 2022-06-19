@@ -29,8 +29,8 @@ function Delete({ _id, deleteUserHandler }) {
     }
   };
   return (
-    <IconButton>
-      <DeleteIcon onClick={handleDelete} style={{ color: "red" }} />
+    <IconButton onClick={handleDelete}>
+      <DeleteIcon style={{ color: "red" }} />
     </IconButton>
   );
 }

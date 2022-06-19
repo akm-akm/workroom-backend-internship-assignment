@@ -57,7 +57,6 @@ export default function BasicCard({
   const [opend, setOpend] = React.useState(false);
   const handleOpenu = () => {
     setOpen(true);
-    console.log(value);
   };
   const handleOpend = () => setOpend(true);
   const handleCloseu = () => setOpen(false);
@@ -88,7 +87,6 @@ export default function BasicCard({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(value);
     const key = Object.keys(value);
     key.forEach((k) => {
       if (value[k] === "") {

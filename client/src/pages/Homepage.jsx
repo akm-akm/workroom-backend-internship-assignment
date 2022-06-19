@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-export default function DataTable() {
+export default function Homepage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -30,15 +30,16 @@ export default function DataTable() {
     getUsers();
     return () => {
       isMounted = false;
-    //  controller.abort();
+      //  controller.abort();
     };
   }, []);
 
   const deleteUserHandler = async (id) => {
     try {
       console.log(id);
-      setData(data.filter((user) => user.id !== id));
-      console.log(data)
+      setData(data.filter((user) => user._id !== id));
+
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +48,11 @@ export default function DataTable() {
   const updateUserHandler = async (newData) => {
     console.log(newData);
     try {
-      setData({ ...data, newData });
+      setData(
+        data.map((user) =>
+          user._id === newData._id ? { ...user, ...newData } : user
+        ),
+      );
     } catch (error) {
       console.log(error);
     }

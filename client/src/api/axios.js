@@ -2,8 +2,8 @@ import axios from "axios";
 const token = localStorage.getItem("JWTTOKEN");
 
 const axiosInstance = axios.create({
-  baseURL:
-    process.env.URL || "https://workroom-backend-assignment.herokuapp.com/api",
+//  baseURL: "http://localhost:5001/api/",
+  baseURL: "https://workroom-backend-assignment.herokuapp.com/api",
 });
 
 axiosInstance.interceptors.request.use(

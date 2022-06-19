@@ -63,21 +63,21 @@ test("update user data with invalid body", async () => {
   await request(app)
     .put(`/api/user/${userOneId}`)
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
-    .send({ gender: "male" })
+    .send({ Gender: "male" })
     .expect(400);
 });
 
 test("Delete a user without authentication", async () => {
-  await request(app).delete(`/api/user`).send({ _id: userOneId }).expect(401);
+  await request(app).delete(`/api/user/${userOneId}`).send().expect(401);
   const user = await User.findById({ _id: userOneId });
   expect(user).not.toBeNull();
 });
 
 test("Delete a user", async () => {
   const response = await request(app)
-    .delete(`/api/user`)
+    .delete(`/api/user/${userOneId}`)
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
-    .send({ _id: userOneId })
+    .send()
     .expect(200);
   const user = await User.findById({ _id: userOneId });
   expect(user).toBeNull();
