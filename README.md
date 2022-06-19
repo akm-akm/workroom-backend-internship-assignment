@@ -19,6 +19,7 @@ As the the question demands, user should be able to delete any user information,
 https://youtu.be/rNnqjzB118Y
 
 <vid src="./postman.testing.m4v">
+
 ## Run Locally
 
 Clone the project
