@@ -12,7 +12,7 @@ router.use(bodyParser.json());
  */
 router.get("/user", auth, async (req, res) => {
   try {
-    const user = await User.find();
+    const user = await (await User.find()).reverse();
     res.status(200).json({ data: user });
   } catch ({ message }) {
     res.status(400).json({ error: message });
@@ -28,7 +28,17 @@ router.put("/user/:id", auth, async (req, res) => {
   try {
     const { id: _id } = req.params;
     const updates = Object.keys(req.body);
-    const allowedUpdates = ["name", "email", "password", "dob"];
+    const allowedUpdates = [
+      "name",
+      "email",
+      "password",
+      "dob",
+      "gender",
+      "about",
+      "country",
+      "language",
+      "game",
+    ];
     const isValidOperation = updates.every((update) =>
       allowedUpdates.includes(update)
     );
@@ -45,15 +55,13 @@ router.put("/user/:id", auth, async (req, res) => {
 });
 
 /**
- * @route POST api/user/:id
+ * @route Patch api/user/:id
  * @desc Delete specific user data from the id provided in the parameter
  * @access Private
  */
 router.patch("/user/:id", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    const deletes = req.body.data;
-    console.log(deletes);
+    const deletes = Object.keys(req.body);
     const allowedDeletes = ["gender", "about", "country", "language", "game"];
     const isValidOperation = deletes.every((update) =>
       allowedDeletes.includes(update)
@@ -61,10 +69,13 @@ router.patch("/user/:id", auth, async (req, res) => {
     if (!isValidOperation || deletes.length === 0) {
       return res.status(400).json({ error: "Invalid deletes!" });
     }
-    deletes.forEach((update) => delete user[update]);
-    console.log(user);
-    await user.save();
-    res.status(200).json({ data: user });
+    const user = await User.updateOne(
+      { _id: req.params.id },
+      { $unset: req.body }
+    );
+    //  console.log(user);
+    //await user.save();
+    res.status(201).json({ data: user });
   } catch ({ message }) {
     res.status(400).json({ error: message });
   }
