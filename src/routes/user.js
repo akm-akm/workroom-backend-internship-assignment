@@ -72,7 +72,8 @@ router.patch("/user/:id", auth, async (req, res) => {
     }
     await user.updateOne({ $unset: req.body });
     await user.save();
-    res.status(201).json({ data: user });
+    const user2 = await User.findById({ _id: req.params.id });
+    res.status(201).json({ data: user2 });
   } catch ({ message }) {
     res.status(400).json({ error: message });
   }

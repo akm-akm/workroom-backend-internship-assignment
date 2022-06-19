@@ -105,11 +105,12 @@ export default function BasicCard({
         delete del[k];
       }
     });
-    deleteUser();
+    deleteUserdata();
   };
 
-  const deleteUser = async () => {
+  const deleteUserdata = async () => {
     try {
+      console.log(del)
       const response = await axios.patch(
         `/user/${user._id}`,
         JSON.stringify(del),
@@ -118,7 +119,7 @@ export default function BasicCard({
           withCredentials: false,
         }
       );
-      console.log(JSON.stringify(response?.data));
+      console.log((response?.data.data));
       handleClosed();
       updateUserHandler(response.data.data);
     } catch (err) {

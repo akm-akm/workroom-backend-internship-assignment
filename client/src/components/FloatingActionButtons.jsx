@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function FloatingActionButtons() {
   const { user, logout } = React.useContext(AuthContext);
-
+  console.log(user);
   const exit = () => {
     logout();
   };
@@ -14,13 +14,13 @@ export default function FloatingActionButtons() {
       variant="extended"
       style={{
         position: "fixed",
-        width: "100px",
+        width: "200px",
         bottom: "0",
         right: "0",
         margin: "35px",
       }}
     >
-      Log out
+      {user.name} Log out
     </Fab>
   ) : null;
 }

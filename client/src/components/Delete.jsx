@@ -14,7 +14,6 @@ function Delete({ _id, deleteUserHandler }) {
         headers: { "Content-Type": "application/json" },
         withCredentials: false,
       });
-      console.log((response?.data));
       deleteUserHandler(_id);
     } catch (err) {
       console.log(err);

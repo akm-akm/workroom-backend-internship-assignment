@@ -36,10 +36,7 @@ export default function Homepage() {
 
   const deleteUserHandler = async (id) => {
     try {
-      console.log(id);
       setData(data.filter((user) => user._id !== id));
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -51,8 +48,17 @@ export default function Homepage() {
       setData(
         data.map((user) =>
           user._id === newData._id ? { ...user, ...newData } : user
-        ),
+        )
       );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const delUserHandler = async (newData) => {
+    console.log(newData);
+    try {
+      setData(data.map((user) => (user._id === newData._id ? newData : user)));
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +82,7 @@ export default function Homepage() {
             <BasicCard
               deleteUserHandler={deleteUserHandler}
               updateUserHandler={updateUserHandler}
+              delUserHandler={delUserHandler}
               data={user}
               key={user._id}
               user={user}
