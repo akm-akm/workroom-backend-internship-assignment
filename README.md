@@ -16,7 +16,7 @@ As the the question demands, user should be able to delete any user information,
 
 ## Postman Testing
 
-<vid  src="assets/postman.testing.webm" width=300>
+https://youtu.be/rNnqjzB118Y
 
 ## Run Locally
 
