@@ -174,7 +174,7 @@ export default function BasicCard({ user }) {
           <Typography variant="body2">
             {user.about}
             <br />
-            {user.language} {"|"} {user.country}
+            {user.language} {"|"} {user.country} {"|"} {user.game}
           </Typography>
         </CardContent>
         <CardActions>

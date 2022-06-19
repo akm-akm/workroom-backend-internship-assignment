@@ -31,7 +31,7 @@ export default function DataTable() {
     getUsers();
     return () => {
       isMounted = false;
-       controller.abort();
+      controller.abort();
     };
   }, []);
 
@@ -52,7 +52,7 @@ export default function DataTable() {
         {data?.length ? (
           data.map((user) => <BasicCard key={user._id} user={user} />)
         ) : (
-          <p>loading</p>
+          <p>loading... Refresh if stuck!</p>
         )}
       </Box>
     </Container>
