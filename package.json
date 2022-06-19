@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config --watch --detectOpenHandles --runInBand"
+    "test": "DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config --watch --detectOpenHandles --runInBand",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+ 
   },
   "jest": {
     "testEnvironment": "node"
