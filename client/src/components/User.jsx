@@ -49,6 +49,7 @@ export default function BasicCard({
 
   const [value, setValue] = useState({
     ...data,
+    password:"",
     dob: moment.utc(user.dob).format("YYYY/MM/DD"),
   });
 
@@ -87,7 +88,6 @@ export default function BasicCard({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     console.log(value);
     const key = Object.keys(value);
     key.forEach((k) => {
@@ -164,7 +164,7 @@ export default function BasicCard({
   };
   return (
     <>
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ minWidth: 275 , maxWidth:300, marginBottom:'10px' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {user.email}
@@ -172,12 +172,14 @@ export default function BasicCard({
           <Typography variant="h5" component="div">
             {user.name}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography variant="body2">
             {user.gender} {"|"} {moment.utc(user.dob).format("MM/DD/YYYY")}
           </Typography>
-          <Typography variant="body2">
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
             {user.about}
-            <br />
+
+          </Typography>
+          <Typography variant="body2">
             {user.language} {"|"} {user.country} {"|"} {user.game}
           </Typography>
         </CardContent>
