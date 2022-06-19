@@ -41,16 +41,24 @@ Testing
 ```bash
   npm test
 ```
-
 Start the server
 
 ```bash
   npm run start
 ```
-
 On successfull setup-
 
 `🚀 Server ready at http://localhost:{PORT}`
+
+## Environment Variables
+
+To run this project locally, you will need to add the following environment variables to your .env file
+
+`JWT_SECRET`
+
+`MONGO_URI`
+
+`PORT`
 
 ## Running Tests
 
@@ -60,9 +68,10 @@ To run tests, run the following command
   npm run test
 ```
 
-## API Reference
 
-### Register a user
+# API Reference
+
+### 💡 Register a user
 
 ```http
   POST /api/register
@@ -73,7 +82,6 @@ To run tests, run the following command
 | `data` | `string` |  `name`,`email`,`password`,`dob` |
 
 ##### Request Body
-
 ```JSON
 {
     "name":     "Aditya Kumar Mandal",
@@ -116,7 +124,7 @@ To run tests, run the following command
 400 - Bad Request
 ```
 
-### Login a user
+### 💡 Login a user
 
 ```http
   POST /api/login
@@ -127,7 +135,6 @@ To run tests, run the following command
 | `data` | `string` |  `email`,`password` |
 
 ##### Request Body
-
 ```JSON
 {
     "email": "akm123@gmail.com",
@@ -136,7 +143,6 @@ To run tests, run the following command
 ```
 
 ##### Response Body
-
 ```JSON
 {
     "data": {
@@ -164,7 +170,8 @@ To run tests, run the following command
 400 - Bad Request
 ```
 
-### Logout a user
+
+### 💡 Logout a user
 
 ```http
   GET /api/logout
@@ -174,8 +181,8 @@ To run tests, run the following command
 | :-------- | :------- | :------------------------- |
 | `Authorization` | `Bearer` |      `true`           |
 
-##### Response Body
 
+##### Response Body
 ```JSON
 {
     "data": "Logout success"
@@ -190,7 +197,9 @@ To run tests, run the following command
 500 - Internal server error
 ```
 
-### Get all user
+
+
+### 💡 Get all user
 
 ```http
   GET /api/user
@@ -199,6 +208,7 @@ To run tests, run the following command
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
+
 
 ##### Response Body
 ```JSON
@@ -254,7 +264,7 @@ To run tests, run the following command
 500 - Internal server error
 ```
 
-### Update a user data
+### 💡 Update a user data
 
 ```http
   POST /api/user/:id
@@ -263,6 +273,7 @@ To run tests, run the following command
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
+
 
 |    Parameter   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
@@ -273,7 +284,6 @@ To run tests, run the following command
 | `data` | `string` |  `name`,`email`,`password`,`dob`,`gender`,`about`,`country`,`language`,`game` |
 
 ##### Request Body
-
 ```JSON
 {
     "gender": "M",
@@ -287,7 +297,6 @@ To run tests, run the following command
 ```
 
 ##### Response Body
-
 ```JSON
 {
     "data": {
@@ -313,7 +322,7 @@ To run tests, run the following command
 401 - Unautharized
 ```
 
-### Delete a user data
+### 💡 Delete a user data
 
 ```http
   PATCH /api/user/:id
@@ -322,6 +331,7 @@ To run tests, run the following command
 |    Header   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
 | `Authorization` | `Bearer` |      `true`         |
+
 
 |    Parameter   | Type     | Required                |
 | :-------- | :------- | :-------------------------|
@@ -332,7 +342,6 @@ To run tests, run the following command
 | `data` | `string` | `gender`,`about`,`country`,`language`,`game` |
 
 ##### Request Body
-
 ```JSON
 {
   "gender":   "",
@@ -343,7 +352,6 @@ To run tests, run the following command
 ```
 
 ##### Response Body
-
 ```JSON
 {
     "data": {
@@ -365,10 +373,10 @@ To run tests, run the following command
 401 - Unautharized
 ```
 
-### Delete a user profile
+### 💡 Delete a user profile
 
 ```http
-  DELETE /api/user/:id
+  DELETE /api/user/
 ```
 
 |    Header   | Type     | Required                |
@@ -376,12 +384,12 @@ To run tests, run the following command
 | `Authorization` | `Bearer` |      `true`         |
 
 
+
 |    Body   | Type     | Valid Keys                |
 | :-------- | :------- | :------------------------- |
 | `data` | `string` | `_id` |
 
 ##### Request Body
-
 ```JSON
 {
     "_id":"62aec4b4487d50816fadd1d5"
@@ -389,7 +397,6 @@ To run tests, run the following command
 ```
 
 ##### Response Body
-
 ```JSON
 {
     "data": {
@@ -414,3 +421,7 @@ To run tests, run the following command
 400 - Bad Request
 401 - Unautharized
 ```
+## Authors
+
+- [@Aditya Kumar Mandal](https://www.github.com/akm-akm)
+
