@@ -3,7 +3,7 @@ const token = localStorage.getItem("JWTTOKEN");
 
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5001/api",
+  baseURL: "https://workroom-backend-assignment.herokuapp.com/api",
 });
 
 axiosInstance.interceptors.request.use(
