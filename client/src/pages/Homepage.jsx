@@ -11,7 +11,6 @@ export default function DataTable() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log("home");
     let isMounted = true;
     const controller = new AbortController();
     const getUsers = async () => {
@@ -31,10 +30,28 @@ export default function DataTable() {
     getUsers();
     return () => {
       isMounted = false;
-      controller.abort();
+    //  controller.abort();
     };
   }, []);
 
+  const deleteUserHandler = async (id) => {
+    try {
+      console.log(id);
+      setData(data.filter((user) => user.id !== id));
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateUserHandler = async (newData) => {
+    console.log(newData);
+    try {
+      setData({ ...data, newData });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Container component="main" maxWidth="s">
       <CssBaseline />
@@ -50,7 +67,15 @@ export default function DataTable() {
           All Users
         </Typography>
         {data?.length ? (
-          data.map((user) => <BasicCard key={user._id} user={user} />)
+          data.map((user) => (
+            <BasicCard
+              deleteUserHandler={deleteUserHandler}
+              updateUserHandler={updateUserHandler}
+              data={user}
+              key={user._id}
+              user={user}
+            />
+          ))
         ) : (
           <p>loading... Refresh if stuck!</p>
         )}

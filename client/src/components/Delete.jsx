@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "../api/axios";
 import { IconButton } from "@mui/material";
-function Delete({ _id }) {
+function Delete({ _id, deleteUserHandler }) {
   const [errMsg, setErrMsg] = useState("");
-   
+
   const handleDelete = () => {
     deleteUser();
   };
   const deleteUser = async () => {
     try {
-      
       const response = await axios.delete(`/user/${_id}`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: false,
       });
-      console.log(JSON.stringify(response?.data));
+      console.log((response?.data));
+      deleteUserHandler(_id);
     } catch (err) {
       console.log(err);
       if (!err?.response) {

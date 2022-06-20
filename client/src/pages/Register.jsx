@@ -142,6 +142,16 @@ function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  name="language"
+                  fullWidth
+                  value={value.language}
+                  onChange={handleChange}
+                  id="language"
+                  label="language"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
                   name="country"
                   value={value.country}
                   onChange={handleChange}

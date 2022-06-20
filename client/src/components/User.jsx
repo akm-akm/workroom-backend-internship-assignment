@@ -32,7 +32,12 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard({ user }) {
+export default function BasicCard({
+  user,
+  data,
+  updateUserHandler,
+  deleteUserHandler,
+}) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -40,27 +45,22 @@ export default function BasicCard({ user }) {
     transform: "translate(-50%, -50%)",
     width: "100%",
     height: "100%",
-    bgcolor: "#ffffff",
   };
+
+  const [value, setValue] = useState({
+    ...data,
+    dob: moment.utc(user.dob).format("YYYY/MM/DD"),
+  });
 
   const [open, setOpen] = React.useState(false);
   const [opend, setOpend] = React.useState(false);
-  const handleOpenu = () => setOpen(true);
+  const handleOpenu = () => {
+    setOpen(true);
+    console.log(value);
+  };
   const handleOpend = () => setOpend(true);
   const handleCloseu = () => setOpen(false);
   const handleClosed = () => setOpend(false);
-
-  const [value, setValue] = useState({
-    name: "",
-    email: "",
-    password: "",
-    dob: "",
-    gender: "",
-    game: "",
-    about: "",
-    language: "",
-    country: "",
-  });
 
   const [del, setDel] = useState({
     gender: false,
@@ -95,6 +95,8 @@ export default function BasicCard({ user }) {
         delete value[k];
       }
     });
+    delete value.createdAt;
+    delete value._id;
     updateUser();
   };
 
@@ -120,6 +122,7 @@ export default function BasicCard({ user }) {
       );
       console.log(JSON.stringify(response?.data));
       handleClosed();
+      updateUserHandler(response.data.data);
     } catch (err) {
       console.log(err);
       if (!err?.response) {
@@ -143,8 +146,9 @@ export default function BasicCard({ user }) {
           withCredentials: false,
         }
       );
-      console.log(JSON.stringify(response?.data));
+      console.log(response?.data.data);
       handleCloseu();
+      updateUserHandler(response.data.data);
     } catch (err) {
       console.log(err);
       if (!err?.response) {
@@ -189,7 +193,11 @@ export default function BasicCard({ user }) {
           >
             Delete data
           </Button>
-          <Delete key={user._id} _id={user._id} />
+          <Delete
+            key={user._id}
+            _id={user._id}
+            deleteUserHandler={deleteUserHandler}
+          />
         </CardActions>
       </Card>
       <Modal
@@ -200,10 +208,19 @@ export default function BasicCard({ user }) {
       >
         <Container component="main" maxWidth="xs">
           <CssBaseline />
-          <Typography component="h1" variant="h5">
-            Check the fields to be deleted
-          </Typography>
-          <Box>
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              paddingTop: "40px",
+              backgroundColor: "white",
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Check the fields to be deleted
+            </Typography>
             <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
               <FormGroup>
                 <FormControlLabel
@@ -294,10 +311,11 @@ export default function BasicCard({ user }) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              backgroundColor: "white",
             }}
           >
             <Typography component="h1" variant="h5">
-              Update details
+              Only fill the fields you want to update
             </Typography>
             <Box
               component="form"
@@ -351,6 +369,16 @@ export default function BasicCard({ user }) {
                     onChange={handleChange}
                     id="about"
                     label="about"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="language"
+                    fullWidth
+                    value={value.language}
+                    onChange={handleChange}
+                    id="language"
+                    label="language"
                   />
                 </Grid>
                 <Grid item xs={12}>

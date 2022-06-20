@@ -1,9 +1,9 @@
 import axios from "axios";
 const token = localStorage.getItem("JWTTOKEN");
 
-
 const axiosInstance = axios.create({
-  baseURL: "https://workroom-backend-assignment.herokuapp.com/api",
+  baseURL:
+    process.env.URL || "https://workroom-backend-assignment.herokuapp.com/api",
 });
 
 axiosInstance.interceptors.request.use(
@@ -16,6 +16,5 @@ axiosInstance.interceptors.request.use(
     Promise.reject(error);
   }
 );
-
 
 export default axiosInstance;
